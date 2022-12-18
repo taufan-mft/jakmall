@@ -45,14 +45,6 @@ export const RightColumn = styled.div`
     mix-blend-mode: normal;
     opacity: 0.6;
   }
-  .estimation-text {
-    font-family: 'Inter', 'serif';
-    font-size: 14px;
-    line-height: 16px;
-    color: #000000;
-    margin-top: 21px;
-    display: block;
-  }
   h1 {
     z-index: 9;
     position: relative;

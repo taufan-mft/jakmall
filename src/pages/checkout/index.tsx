@@ -5,6 +5,8 @@ import TitleHeader from "./components/TitleHeader";
 import FormGroup from "./components/FormGroup";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import CostDetail from "./components/CostDetail";
+import DeliveryDetail from "./components/DeliveryDetail";
+import BankDetail from "./components/BankDetail";
 
 
 const CheckoutPage = () => {
@@ -23,7 +25,9 @@ const CheckoutPage = () => {
                         <h1>Summary</h1>
                         <p>10 items purchased</p>
                         <Separator />
-                        <span className="estimation-text">Delivery estimation</span>
+                        <DeliveryDetail />
+                        <Separator />
+                        <BankDetail />
                         <CostWrapper>
                             <CostDetail />
                             <BigButton>Continue to Payment</BigButton>
