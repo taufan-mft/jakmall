@@ -15,6 +15,9 @@ export const OrangeNotch = styled.div`
   display: flex;
   justify-items: center;
   align-items: center;
+  @media screen and (max-width: 768px) {
+    height: 100px;
+  }
 `;
 
 export const Circle = styled.div`
@@ -38,6 +41,7 @@ export const CircleWrapper = styled.div`
   justify-items: center;
   align-items: center;
   padding-left: 38px;
+  flex-wrap: wrap;
   p {
     font-style: italic;
     font-weight: 300;

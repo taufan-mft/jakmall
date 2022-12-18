@@ -27,6 +27,10 @@ export const Head = styled.div`
   justify-content: center;
   align-items: start;
   margin-left: 240px;
+  @media (max-width: 768px) {
+    width: 90vw;
+    margin-left: unset;
+  }
   h1 {
     z-index: 9;
     position: relative;

@@ -8,6 +8,9 @@ export const MainWrapper = styled.div`
   align-items: center;
   margin-top: 2px;
   margin-left: 40px;
+  @media (max-width: 768px) {
+    margin-left: 12px;
+  }
   span {
     font-family: "Inter", serif;
     font-style: italic;

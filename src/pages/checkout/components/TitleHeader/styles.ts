@@ -9,6 +9,9 @@ export const MainWrapper = styled.div`
   width: 100%;
   margin-bottom: 8px;
   padding-right: 8px;
+  @media (max-width: 768px) {
+    margin-bottom: 12px;
+  }
   h1 {
     z-index: 9;
     position: relative;

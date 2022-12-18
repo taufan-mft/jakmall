@@ -7,6 +7,9 @@ export const MainWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 768px) {
+    height: unset;
+  }
 `;
 
 export const WhiteBox = styled.div`
@@ -16,6 +19,10 @@ export const WhiteBox = styled.div`
   margin-right: 10px;
   margin-left: 10px;
   background-color: white;
+  @media (max-width: 768px) {
+    height: unset;
+    margin-top: 40px;
+  }
 `;
 
 export const FlexHead = styled.div`
@@ -37,6 +44,10 @@ export const LeftColumn = styled.div`
 export const RightColumn = styled.div`
   padding-left: 19px;
   position: relative;
+  @media (max-width: 768px) {
+    position: static;
+    margin-top: 16px;
+  }
   p {
     font-family: "Inter", serif;
     font-size: 14px;
@@ -70,6 +81,9 @@ export const Separator = styled.div`
 export const CostWrapper = styled.div`
   position: absolute;
   bottom: 0;
+  @media (max-width: 768px) {
+    position: static;
+  }
 `;
 
 export const BigButton = styled.button`
