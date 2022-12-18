@@ -18,3 +18,13 @@ export const WhiteBox = styled.div`
   margin-left: 50px;
   background-color: white;
 `;
+
+export const LeftColumn = styled.div`
+  min-height: 460px;
+  max-width: 760px;
+  margin-left: 40px;
+  border-right: 1px solid rgba(255, 138, 0, 0.2);
+  @media (max-width: 768px) {
+    margin-left: 12px;
+  }
+`;

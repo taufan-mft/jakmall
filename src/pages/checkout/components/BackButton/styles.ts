@@ -6,7 +6,6 @@ export const MainWrapper = styled.div`
   gap:10px;
   justify-items: center;
   align-items: center;
-  margin-left: 40px;
   margin-top: 2px;
   span {
     font-weight: 300;
