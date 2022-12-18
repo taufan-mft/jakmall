@@ -10,15 +10,16 @@ import {
 } from "./styles";
 import StageIndicator from "./components/StageIndicator";
 import BackButton from "./components/BackButton";
-import TitleHeader from "./components/TitleHeader";
-import FormGroup from "./components/FormGroup";
 import CostDetail from "./components/CostDetail";
 import DeliveryDetail from "./components/DeliveryDetail";
 import BankDetail from "./components/BankDetail";
 import { useCallback, useMemo } from "react";
-import { useForm, FormProvider } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { FormProvider, useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCheckoutContext } from "../../context/CheckoutContext";
+import { Stage1 } from "./components/Stage1";
+import { Stage2 } from "./components/Stage2";
+
 export type Data = {
   firstName: string;
   dropShipper: string;
@@ -26,10 +27,12 @@ export type Data = {
   dropPhone: string;
   delivery: string;
 };
+
 const CheckoutPage = () => {
   // const matches = useMediaQuery("(min-width: 768px)");
   const { type } = useParams();
-  const { paymentMethod } = useCheckoutContext();
+  const navigate = useNavigate();
+  const { paymentMethod, setOrder } = useCheckoutContext();
   const methods = useForm<Data>({
     defaultValues: {
       dropShipper: "",
@@ -39,13 +42,6 @@ const CheckoutPage = () => {
       delivery: "",
     },
   });
-  const handleClick = useCallback(() => {
-    console.log("taniaaa", methods.getValues());
-    methods.handleSubmit(
-      (v) => console.log(v),
-      (e) => console.log(e)
-    );
-  }, [methods]);
 
   const buttonText = useMemo(() => {
     if (type === "1") {
@@ -60,7 +56,17 @@ const CheckoutPage = () => {
     <FormProvider {...methods}>
       <form
         onSubmit={methods.handleSubmit(
-          (v) => console.log(v),
+          (v) => {
+            setOrder((prevState) => ({
+              ...prevState,
+              delivery: v.delivery,
+              dropPhone: v.dropPhone,
+              phoneNumber: v.phoneNumber,
+              firstName: v.firstName,
+              dropShipper: v.dropShipper,
+            }));
+            navigate("/checkout/2");
+          },
           (e) => console.log(e)
         )}
       >
@@ -70,8 +76,8 @@ const CheckoutPage = () => {
             <BackButton />
             <FlexHead>
               <LeftColumn>
-                <TitleHeader />
-                <FormGroup></FormGroup>
+                {type === "1" && <Stage1 />}
+                {type === "2" && <Stage2 />}
               </LeftColumn>
               <RightColumn>
                 <h1>Summary</h1>
@@ -81,7 +87,7 @@ const CheckoutPage = () => {
                 <BankDetail />
                 <CostWrapper>
                   <CostDetail />
-                  <BigButton onClick={handleClick}>{buttonText}</BigButton>
+                  <BigButton>{buttonText}</BigButton>
                 </CostWrapper>
               </RightColumn>
             </FlexHead>

@@ -1,4 +1,11 @@
-import React, { Dispatch, SetStateAction, useContext, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
+import { useParams } from "react-router-dom";
 
 interface ContextType {
   order: OrderDetail;
@@ -7,6 +14,7 @@ interface ContextType {
   setShippingDetail: Dispatch<SetStateAction<ShippingDetail>>;
   paymentMethod: string;
   shippingDetail: ShippingDetail;
+  totalPayment: number;
 }
 
 export const CheckoutContext = React.createContext<ContextType>({
@@ -18,6 +26,7 @@ export const CheckoutContext = React.createContext<ContextType>({
     delivery: "",
     isDropShip: false,
   },
+  totalPayment: 0,
   setOrder: () => {},
   setPaymentMethod: () => {},
   setShippingDetail: () => {},
@@ -57,12 +66,21 @@ const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
     delivery: "",
     isDropShip: false,
   });
+  const { type } = useParams();
   const [paymentMethod, setPaymentMethod] = useState("e-Wallet");
   const [shippingDetail, setShippingDetail] = useState<ShippingDetail>({
     courierName: "GO-SEND",
     cost: 15000,
     estimation: "today",
   });
+
+  const totalPayment = useMemo(
+    () =>
+      500000 +
+      (type !== "1" ? shippingDetail.cost : 0) +
+      (order.isDropShip ? 5900 : 0),
+    [order.isDropShip, shippingDetail.cost]
+  );
 
   return (
     <CheckoutContext.Provider
@@ -73,6 +91,7 @@ const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
         setPaymentMethod,
         shippingDetail,
         setShippingDetail,
+        totalPayment,
       }}
     >
       {children}

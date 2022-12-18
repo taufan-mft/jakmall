@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 export const MainWrapper = styled.div`
+  cursor: pointer;
   display: flex;
   gap: 10px;
   justify-items: center;
   align-items: center;
   margin-top: 2px;
+  margin-left: 40px;
   span {
     font-weight: 300;
     font-size: 14px;

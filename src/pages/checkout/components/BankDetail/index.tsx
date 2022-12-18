@@ -6,7 +6,7 @@ const BankDetail = () => {
   const { type } = useParams();
   const { paymentMethod } = useCheckoutContext();
 
-  if (type !== "3") return null;
+  if (type === "1") return null;
   return (
     <MainWrapper>
       <span className="estimation-text">Payment method</span>

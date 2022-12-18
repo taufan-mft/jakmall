@@ -2,12 +2,14 @@ import Input from "./components/Input";
 import { MainWrapper } from "./styles";
 import { useFormContext } from "react-hook-form";
 import React from "react";
+import { useCheckoutContext } from "../../../../context/CheckoutContext";
 
 const FormGroup = () => {
   const {
     register,
     formState: { errors },
   } = useFormContext();
+  const { order } = useCheckoutContext();
   return (
     <MainWrapper>
       <Input
@@ -19,7 +21,7 @@ const FormGroup = () => {
         label="Dropshipper name"
         isSmall={true}
         error={errors.dropShipper?.type === "required"}
-        register={register("dropShipper", { required: true })}
+        register={register("dropShipper", { required: order.isDropShip })}
       />
       <Input
         label="Phone Number"
@@ -36,7 +38,7 @@ const FormGroup = () => {
         isSmall={true}
         error={errors.dropPhone !== undefined}
         register={register("dropPhone", {
-          required: true,
+          required: order.isDropShip,
           maxLength: 20,
           minLength: 6,
           pattern: /^\d+$/,

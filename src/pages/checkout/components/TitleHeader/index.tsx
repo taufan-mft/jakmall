@@ -2,14 +2,18 @@ import { MainWrapper, DropshipCheck, CheckWrapper } from "./styles";
 import { useCheckoutContext } from "../../../../context/CheckoutContext";
 import { useParams } from "react-router-dom";
 
-const TitleHeader = () => {
+interface TitleHeaderProps {
+  title: string;
+}
+
+const TitleHeader = ({ title }: TitleHeaderProps) => {
   const { order, setOrder } = useCheckoutContext();
   const { type } = useParams();
 
   return (
     <MainWrapper>
       <div style={{ position: "relative" }}>
-        <h1>Delivery details</h1>
+        <h1>{title}</h1>
         <div
           style={{
             backgroundColor: "rgba(238, 238, 238, 1)",
