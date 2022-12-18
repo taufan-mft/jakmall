@@ -85,3 +85,8 @@ export const BigButton = styled.button`
   box-shadow: 3px 5px 10px rgba(255, 138, 0, 0.2);
   border-radius: 2px;
 `;
+
+export const Spacer = styled.div`
+  width: 260px;
+  height: 60px;
+`;

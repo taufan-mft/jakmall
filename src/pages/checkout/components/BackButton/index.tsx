@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 const BackButton = () => {
   const { type } = useParams();
   const navigate = useNavigate();
+  if (type === "3") return null;
   return (
     <MainWrapper onClick={() => navigate(-1)}>
       <AiOutlineArrowLeft height="18px" width="18px" />

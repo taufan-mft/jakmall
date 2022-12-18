@@ -9,6 +9,8 @@ export const MainWrapper = styled.div`
   margin-top: 2px;
   margin-left: 40px;
   span {
+    font-family: "Inter", serif;
+    font-style: italic;
     font-weight: 300;
     font-size: 14px;
     line-height: 19px;

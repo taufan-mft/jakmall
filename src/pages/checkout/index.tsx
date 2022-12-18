@@ -6,6 +6,7 @@ import {
   MainWrapper,
   RightColumn,
   Separator,
+  Spacer,
   WhiteBox,
 } from "./styles";
 import StageIndicator from "./components/StageIndicator";
@@ -19,6 +20,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useCheckoutContext } from "../../context/CheckoutContext";
 import { Stage1 } from "./components/Stage1";
 import { Stage2 } from "./components/Stage2";
+import { Stage3 } from "./components/Stage3";
 
 export type Data = {
   firstName: string;
@@ -67,7 +69,9 @@ const CheckoutPage = () => {
             }));
             navigate("/checkout/2");
           },
-          (e) => console.log(e)
+          (e) => {
+            console.log("anu kepriwe");
+          }
         )}
       >
         <MainWrapper>
@@ -78,6 +82,7 @@ const CheckoutPage = () => {
               <LeftColumn>
                 {type === "1" && <Stage1 />}
                 {type === "2" && <Stage2 />}
+                {type === "3" && <Stage3 />}
               </LeftColumn>
               <RightColumn>
                 <h1>Summary</h1>
@@ -87,7 +92,19 @@ const CheckoutPage = () => {
                 <BankDetail />
                 <CostWrapper>
                   <CostDetail />
-                  <BigButton>{buttonText}</BigButton>
+                  {type !== "3" && (
+                    <BigButton
+                      {...(type !== "1" && {
+                        onClick: () => navigate("/checkout/3"),
+                      })}
+                      {...(type !== "1" && {
+                        type: "button",
+                      })}
+                    >
+                      {buttonText}
+                    </BigButton>
+                  )}
+                  {type === "3" && <Spacer />}
                 </CostWrapper>
               </RightColumn>
             </FlexHead>
