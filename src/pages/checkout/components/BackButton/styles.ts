@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
-
 export const MainWrapper = styled.div`
-    display: flex;
-  gap:10px;
+  display: flex;
+  gap: 10px;
   justify-items: center;
   align-items: center;
   margin-top: 2px;

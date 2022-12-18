@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const CustomLabel = styled.label`
   color: red;
   position: absolute;
@@ -9,9 +8,13 @@ export const CustomLabel = styled.label`
   top: 20px;
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
-  -webkit-transition: 0.2s ease all;`
+  -webkit-transition: 0.2s ease all;
+`;
 
-export const CustomInput = styled.div`
+interface Props {
+  error: boolean;
+}
+export const CustomInput = styled.div<Props>`
   position: relative;
   max-width: 400px;
   width: 100%;
@@ -21,13 +24,16 @@ export const CustomInput = styled.div`
     padding: 30px 30px 10px 8px;
     display: block;
     width: 100%;
-    border: 1px solid #1BD97B;
+    border: ${(props) =>
+      props.error
+        ? "1px solid rgba(255, 138, 0, 1)"
+        : "1px solid rgba(204, 204, 204, 1)"};
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
     max-width: 400px;
     line-height: 22px; /* identical to box height */
-    color: #2D2A40;
+    color: #2d2a40;
     &::placeholder {
       color: transparent;
     }
@@ -37,17 +43,16 @@ export const CustomInput = styled.div`
     }
 
     &:focus ~ label,
-    &:not(:placeholder-shown) ~ label{
+    &:not(:placeholder-shown) ~ label {
       top: 10px;
       font-style: italic;
       font-weight: 300;
       font-size: 13px;
       line-height: 18px;
-      color: #1BD97B;
+      color: #1bd97b;
       mix-blend-mode: normal;
       opacity: 0.8;
     }
-
   }
 
   label {
@@ -64,13 +69,12 @@ export const CustomInput = styled.div`
     color: #000000;
 
     mix-blend-mode: normal;
-    opacity: 0.4
+    opacity: 0.4;
   }
-  
+
   #icon {
     position: absolute;
     right: 10px;
     top: 22px;
   }
-  
-`
+`;

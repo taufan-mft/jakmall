@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const MainWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -8,7 +7,7 @@ export const MainWrapper = styled.div`
   gap: 30px;
   width: 100%;
   @media (max-width: 500px) {
-   max-width: 80vw;
+    max-width: 80vw;
   }
 `;
 

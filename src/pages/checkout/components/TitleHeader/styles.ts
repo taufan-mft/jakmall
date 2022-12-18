@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const MainWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -13,12 +12,12 @@ export const MainWrapper = styled.div`
   h1 {
     z-index: 9;
     position: relative;
-    font-family: 'Montserrat';
+    font-family: "Montserrat", serif;
     font-style: normal;
     font-weight: 700;
     font-size: 36px;
     line-height: 44px;
-    color: #FF8A00;
+    color: #ff8a00;
     margin: unset;
     padding: unset;
   }
@@ -28,10 +27,10 @@ export const MainWrapper = styled.div`
     font-weight: 300;
     font-size: 14px;
     line-height: 19px;
-    color: #2D2A40;
+    color: #2d2a40;
     mix-blend-mode: normal;
     opacity: 0.8;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
   }
 `;
 
@@ -46,6 +45,5 @@ export const DropshipCheck = styled.div`
   height: 18px;
   width: 18px;
   font-size: 12px;
-  border: solid #1BD97B;
-;
-`
+  border: solid #1bd97b; ;
+`;
