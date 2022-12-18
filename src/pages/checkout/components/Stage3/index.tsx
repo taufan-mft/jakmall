@@ -31,7 +31,8 @@ export function Stage3() {
         Order ID: {randomString(5, "23456789ABCDEFGHJKLMNPQRSTUVWXYZ")}
       </p>
       <p className="shipping">
-        Your order will be delivered today with {shippingDetail.courierName}
+        Your order will be delivered {shippingDetail.estimation} with{" "}
+        {shippingDetail.courierName}
       </p>
       <MainWrapper
         onClick={() => {
