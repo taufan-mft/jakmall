@@ -11,12 +11,16 @@ export const MainWrapper = styled.div`
   margin-bottom: 8px;
   padding-right: 8px;
   h1 {
+    z-index: 9;
+    position: relative;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
     font-size: 36px;
     line-height: 44px;
     color: #FF8A00;
+    margin: unset;
+    padding: unset;
   }
   label {
     margin-left: 10px;
@@ -27,6 +31,7 @@ export const MainWrapper = styled.div`
     color: #2D2A40;
     mix-blend-mode: normal;
     opacity: 0.8;
+    font-family: 'Inter', sans-serif;
   }
 `;
 

@@ -44,6 +44,7 @@ export const CircleWrapper = styled.div`
     font-style: italic;
     font-weight: 300;
     font-size: 16px;
+    font-family: 'Inter', sans-serif;
     line-height: 22px;
     color: #FF8A00;
     margin-left: 10px;
