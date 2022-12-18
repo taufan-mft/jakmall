@@ -18,6 +18,43 @@ export const CustomInput = styled.div<Props>`
   position: relative;
   max-width: 400px;
   width: 100%;
+  display: block;
+  textarea {
+    height: 60px;
+    box-sizing: border-box;
+    padding: 30px 30px 10px 8px;
+    display: block;
+    width: 100%;
+    border: ${(props) =>
+      props.error
+        ? "1px solid rgba(255, 138, 0, 1)"
+        : "1px solid rgba(204, 204, 204, 1)"};
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    max-width: 400px;
+    line-height: 22px; /* identical to box height */
+    color: #2d2a40;
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus ~ label,
+    &:not(:placeholder-shown) ~ label {
+      top: 10px;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 13px;
+      line-height: 18px;
+      color: #1bd97b;
+      mix-blend-mode: normal;
+      opacity: 0.8;
+    }
+  }
   input {
     height: 60px;
     box-sizing: border-box;

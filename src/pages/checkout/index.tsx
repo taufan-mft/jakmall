@@ -14,7 +14,7 @@ import BackButton from "./components/BackButton";
 import CostDetail from "./components/CostDetail";
 import DeliveryDetail from "./components/DeliveryDetail";
 import BankDetail from "./components/BankDetail";
-import { useCallback, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCheckoutContext } from "../../context/CheckoutContext";
@@ -34,16 +34,25 @@ const CheckoutPage = () => {
   // const matches = useMediaQuery("(min-width: 768px)");
   const { type } = useParams();
   const navigate = useNavigate();
-  const { paymentMethod, setOrder } = useCheckoutContext();
+  const { paymentMethod, setOrder, order } = useCheckoutContext();
   const methods = useForm<Data>({
-    defaultValues: {
-      dropShipper: "",
-      firstName: "",
-      phoneNumber: "",
-      dropPhone: "",
-      delivery: "",
-    },
+    defaultValues: order,
   });
+
+  useEffect(() => {
+    methods.setValue("firstName", order.firstName);
+    methods.setValue("delivery", order.delivery);
+    methods.setValue("dropPhone", order.dropPhone);
+    methods.setValue("phoneNumber", order.phoneNumber);
+    methods.setValue("dropShipper", order.dropShipper);
+  }, [
+    methods,
+    order.delivery,
+    order.dropPhone,
+    order.dropShipper,
+    order.firstName,
+    order.phoneNumber,
+  ]);
 
   const buttonText = useMemo(() => {
     if (type === "1") {
@@ -57,22 +66,17 @@ const CheckoutPage = () => {
   return (
     <FormProvider {...methods}>
       <form
-        onSubmit={methods.handleSubmit(
-          (v) => {
-            setOrder((prevState) => ({
-              ...prevState,
-              delivery: v.delivery,
-              dropPhone: v.dropPhone,
-              phoneNumber: v.phoneNumber,
-              firstName: v.firstName,
-              dropShipper: v.dropShipper,
-            }));
-            navigate("/checkout/2");
-          },
-          (e) => {
-            console.log("anu kepriwe");
-          }
-        )}
+        onSubmit={methods.handleSubmit((v) => {
+          setOrder((prevState) => ({
+            ...prevState,
+            delivery: v.delivery,
+            dropPhone: v.dropPhone,
+            phoneNumber: v.phoneNumber,
+            firstName: v.firstName,
+            dropShipper: v.dropShipper,
+          }));
+          navigate("/checkout/2");
+        })}
       >
         <MainWrapper>
           <WhiteBox>

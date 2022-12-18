@@ -1,6 +1,7 @@
 import { MainWrapper, DropshipCheck, CheckWrapper } from "./styles";
 import { useCheckoutContext } from "../../../../context/CheckoutContext";
 import { useParams } from "react-router-dom";
+import { useFormContext } from "react-hook-form";
 
 interface TitleHeaderProps {
   title: string;
@@ -9,6 +10,7 @@ interface TitleHeaderProps {
 const TitleHeader = ({ title }: TitleHeaderProps) => {
   const { order, setOrder } = useCheckoutContext();
   const { type } = useParams();
+  const { setValue } = useFormContext();
 
   return (
     <MainWrapper>
@@ -20,17 +22,23 @@ const TitleHeader = ({ title }: TitleHeaderProps) => {
             bottom: "8px",
             position: "absolute",
             height: "8px",
-            width: "100%",
+            width: "300px",
           }}
         ></div>
       </div>
       {type === "1" && (
         <CheckWrapper
           onClick={() =>
-            setOrder((prevState) => ({
-              ...prevState,
-              isDropShip: !prevState.isDropShip,
-            }))
+            setOrder((prevState) => {
+              if (prevState.isDropShip) {
+                setValue("dropPhone", "");
+                setValue("dropShipper", "");
+              }
+              return {
+                ...prevState,
+                isDropShip: !prevState.isDropShip,
+              };
+            })
           }
         >
           <DropshipCheck>{order.isDropShip ? "✔" : ""}️</DropshipCheck>

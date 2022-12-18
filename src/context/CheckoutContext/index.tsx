@@ -1,8 +1,11 @@
 import React, {
   Dispatch,
   SetStateAction,
+  useCallback,
   useContext,
+  useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import { useParams } from "react-router-dom";
@@ -15,9 +18,11 @@ interface ContextType {
   paymentMethod: string;
   shippingDetail: ShippingDetail;
   totalPayment: number;
+  resetData: () => void;
 }
 
 export const CheckoutContext = React.createContext<ContextType>({
+  resetData: () => {},
   order: {
     firstName: "",
     dropShipper: "",
@@ -58,6 +63,7 @@ interface ShippingDetail {
 }
 
 const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
+  const isFirstRender = useRef(true);
   const [order, setOrder] = useState<OrderDetail>({
     firstName: "",
     dropShipper: "",
@@ -67,19 +73,76 @@ const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
     isDropShip: false,
   });
   const { type } = useParams();
-  const [paymentMethod, setPaymentMethod] = useState("e-Wallet");
+  const [paymentMethod, setPaymentMethod] = useState("");
   const [shippingDetail, setShippingDetail] = useState<ShippingDetail>({
-    courierName: "GO-SEND",
+    courierName: "",
     cost: 15000,
     estimation: "today",
   });
+
+  const resetData = useCallback(() => {
+    setOrder({
+      firstName: "",
+      dropShipper: "",
+      phoneNumber: "",
+      dropPhone: "",
+      delivery: "",
+      isDropShip: false,
+    });
+    setPaymentMethod("e-Wallet");
+    setShippingDetail({
+      courierName: "GO-SEND",
+      cost: 15000,
+      estimation: "today",
+    });
+  }, []);
+
+  useEffect(() => {
+    if (order.firstName) {
+      localStorage.setItem("order", JSON.stringify(order));
+    }
+  }, [order]);
+
+  useEffect(() => {
+    if (!paymentMethod) return;
+    localStorage.setItem("payment", paymentMethod);
+  }, [paymentMethod]);
+
+  useEffect(() => {
+    if (!shippingDetail.courierName) return;
+    localStorage.setItem("shipping", JSON.stringify(shippingDetail));
+  }, [shippingDetail]);
+
+  useEffect(() => {
+    const savedOrder = localStorage.getItem("order");
+    if (savedOrder) {
+      setOrder(JSON.parse(savedOrder));
+    }
+    const savedPayment = localStorage.getItem("payment");
+    if (savedPayment) {
+      setPaymentMethod(savedPayment);
+    } else {
+      setPaymentMethod("e-Wallet");
+    }
+    const savedShipping = localStorage.getItem("shipping");
+    if (savedShipping) {
+      setShippingDetail(JSON.parse(savedShipping));
+    } else {
+      setShippingDetail({
+        courierName: "GO-SEND",
+        cost: 15000,
+        estimation: "today",
+      });
+    }
+    isFirstRender.current = false;
+  }, []);
 
   const totalPayment = useMemo(
     () =>
       500000 +
       (type !== "1" ? shippingDetail.cost : 0) +
       (order.isDropShip ? 5900 : 0),
-    [order.isDropShip, shippingDetail.cost]
+    [order.isDropShip, shippingDetail.cost, type]
   );
 
   return (
@@ -92,6 +155,7 @@ const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
         shippingDetail,
         setShippingDetail,
         totalPayment,
+        resetData,
       }}
     >
       {children}

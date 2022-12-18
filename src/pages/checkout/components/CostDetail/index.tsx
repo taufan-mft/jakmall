@@ -16,7 +16,7 @@ const CostDetail = () => {
       </div>
       <div>
         <span className="bold">500,000</span>
-        {order.isDropShip && <span className="bold">8,900</span>}
+        {order.isDropShip && <span className="bold">5,900</span>}
         {type !== "1" && (
           <span className="bold">{shippingDetail.cost.toLocaleString()}</span>
         )}

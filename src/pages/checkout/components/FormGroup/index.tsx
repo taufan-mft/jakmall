@@ -21,7 +21,10 @@ const FormGroup = () => {
         label="Dropshipper name"
         isSmall={true}
         error={errors.dropShipper?.type === "required"}
-        register={register("dropShipper", { required: order.isDropShip })}
+        register={register("dropShipper", {
+          required: order.isDropShip,
+          disabled: !order.isDropShip,
+        })}
       />
       <Input
         label="Phone Number"
@@ -42,11 +45,13 @@ const FormGroup = () => {
           maxLength: 20,
           minLength: 6,
           pattern: /^\d+$/,
+          disabled: !order.isDropShip,
         })}
       />
       <Input
+        isBig={true}
         label="Delivery Address"
-        register={register("delivery", { required: true })}
+        register={register("delivery", { required: true, maxLength: 120 })}
         error={errors.delivery !== undefined}
       />
     </MainWrapper>
