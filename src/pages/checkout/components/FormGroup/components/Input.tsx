@@ -1,6 +1,6 @@
 import { CustomInput } from "./styles";
-import { MdClose } from "react-icons/md";
-import React from "react";
+import { MdClose, MdCheck } from "react-icons/md";
+import React, { useEffect, useState } from "react";
 import { useForm, useFormContext } from "react-hook-form";
 
 interface InputProps {
@@ -9,6 +9,7 @@ interface InputProps {
   isBig?: boolean;
   register?: ReturnType<ReturnType<typeof useForm>["register"]>;
   error?: boolean;
+  type?: string;
 }
 
 const Input = ({
@@ -16,21 +17,29 @@ const Input = ({
   isBig = false,
   register,
   label,
-  error = false,
+  error = undefined,
+  type = "text",
 }: InputProps) => {
-  const { setValue, watch } = useFormContext();
+  const { watch, formState } = useFormContext();
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    if (formState.isSubmitting) {
+      setShow(true);
+    }
+  }, [formState.isSubmitting]);
 
   return (
     <>
       <CustomInput
-        error={error}
+        error={error ?? false}
         id="yoo"
         style={isSmall ? { maxWidth: "300px" } : {}}
       >
         {!isBig && (
           <input
             style={isSmall ? { maxWidth: "300px" } : {}}
-            type="text"
+            type={type}
             placeholder="."
             id="target"
             {...register}
@@ -46,16 +55,11 @@ const Input = ({
           />
         )}
         <label htmlFor="target">{label}</label>
-        {watch(register?.name ?? "")?.length > 0 && (
-          <MdClose
-            color="#1BD97B"
-            id="icon"
-            height="18px"
-            width="18px"
-            onClick={() => {
-              setValue(register?.name ?? "", "");
-            }}
-          />
+        {error && show && (
+          <MdClose color="#FF8A00" id="icon" height="18px" width="18px" />
+        )}
+        {error == false && show && (
+          <MdCheck color="#1BD97B" id="icon" height="18px" width="18px" />
         )}
         {label === "Delivery Address" && (
           <span>{watch("delivery").length}/120</span>

@@ -13,9 +13,12 @@ const FormGroup = () => {
   return (
     <MainWrapper>
       <Input
-        error={errors.firstName?.type === "required"}
-        label="Name"
-        register={register("firstName", { required: true, minLength: 5 })}
+        error={Boolean(errors.firstName)}
+        label="Email"
+        register={register("firstName", {
+          required: true,
+          pattern: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+        })}
       />
       <Input
         label="Dropshipper name"
