@@ -1,5 +1,5 @@
 import { MainWrapper } from "./styles";
-import { useCheckoutContext } from "../../../../context/CheckoutContext";
+import { useCheckoutContext } from "../../context/CheckoutContext";
 import { useParams } from "react-router-dom";
 
 const CostDetail = () => {

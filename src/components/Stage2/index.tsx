@@ -1,7 +1,7 @@
 import TitleHeader from "../TitleHeader";
 import { Head, MainWrapper } from "./styles";
 import ShippingCard from "../ShippingCard";
-import { useCheckoutContext } from "../../../../context/CheckoutContext";
+import { useCheckoutContext } from "../../context/CheckoutContext";
 import PaymentCard from "../PaymentCard";
 
 export function Stage2() {

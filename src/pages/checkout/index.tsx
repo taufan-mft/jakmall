@@ -9,18 +9,18 @@ import {
   Spacer,
   WhiteBox,
 } from "./styles";
-import StageIndicator from "./components/StageIndicator";
-import BackButton from "./components/BackButton";
-import CostDetail from "./components/CostDetail";
-import DeliveryDetail from "./components/DeliveryDetail";
-import BankDetail from "./components/BankDetail";
+import StageIndicator from "../../components/StageIndicator";
+import BackButton from "../../components/BackButton";
+import CostDetail from "../../components/CostDetail";
+import DeliveryDetail from "../../components/DeliveryDetail";
+import BankDetail from "../../components/BankDetail";
 import { useEffect, useMemo } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCheckoutContext } from "../../context/CheckoutContext";
-import { Stage1 } from "./components/Stage1";
-import { Stage2 } from "./components/Stage2";
-import { Stage3 } from "./components/Stage3";
+import { Stage1 } from "../../components/Stage1";
+import { Stage2 } from "../../components/Stage2";
+import { Stage3 } from "../../components/Stage3";
 
 export type Data = {
   firstName: string;

@@ -1,6 +1,6 @@
 import { MainWrapper } from "./styles";
-import { useCheckoutContext } from "../../../../context/CheckoutContext";
-import { Separator } from "../../styles";
+import { useCheckoutContext } from "../../context/CheckoutContext";
+import { Separator } from "../../pages/checkout/styles";
 import { useParams } from "react-router-dom";
 
 const DeliveryDetail = () => {

@@ -1,5 +1,5 @@
 import { Card } from "./styles";
-import { useCheckoutContext } from "../../../../context/CheckoutContext";
+import { useCheckoutContext } from "../../context/CheckoutContext";
 
 interface Props {
   label: string;

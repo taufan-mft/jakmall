@@ -2,7 +2,7 @@ import Input from "./components/Input";
 import { MainWrapper } from "./styles";
 import { useFormContext } from "react-hook-form";
 import React from "react";
-import { useCheckoutContext } from "../../../../context/CheckoutContext";
+import { useCheckoutContext } from "../../context/CheckoutContext";
 
 const FormGroup = () => {
   const {
@@ -36,7 +36,7 @@ const FormGroup = () => {
           required: true,
           maxLength: 20,
           minLength: 6,
-          pattern: /^[+][0-9-,]*$/,
+          pattern: /^[+0-9][0-9-,]*$/,
         })}
       />
       <Input

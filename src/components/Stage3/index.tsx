@@ -1,5 +1,5 @@
 import { Head, MainWrapper } from "./styles";
-import { useCheckoutContext } from "../../../../context/CheckoutContext";
+import { useCheckoutContext } from "../../context/CheckoutContext";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 

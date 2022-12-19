@@ -31,6 +31,7 @@ function App() {
               </CheckoutProvider>
             }
           />
+          <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
       </BrowserRouter>
     </>

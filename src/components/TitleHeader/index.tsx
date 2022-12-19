@@ -1,5 +1,5 @@
 import { MainWrapper, DropshipCheck, CheckWrapper } from "./styles";
-import { useCheckoutContext } from "../../../../context/CheckoutContext";
+import { useCheckoutContext } from "../../context/CheckoutContext";
 import { useParams } from "react-router-dom";
 import { useFormContext } from "react-hook-form";
 
