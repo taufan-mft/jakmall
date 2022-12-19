@@ -36,7 +36,7 @@ const FormGroup = () => {
           required: true,
           maxLength: 20,
           minLength: 6,
-          pattern: /^\d+$/,
+          pattern: /^[+][0-9-,]*$/,
         })}
       />
       <Input
