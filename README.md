@@ -1,4 +1,5 @@
 # Jakmall Technical Test
+Link repository:https://github.com/taufan-mft/jakmall
 
 Akses halaman checkout dengan link /checkout. 
 
